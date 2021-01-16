@@ -11,7 +11,7 @@ export default function Header() {
         style={{ height: 600, width: 200, resizeMode: 'contain' }}
       />
       <View style={tailwind('bg-blue-800 px-2 py-2 rounded-full')}>
-        <Text style={tailwind('text-blue-100 container')}>
+        <Text style={tailwind('text-blue-100')}>
           Hello Tailwind 👋, what's going on?
         </Text>
       </View>
