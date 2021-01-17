@@ -4,8 +4,6 @@ import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { tailwind } from '../lib/tailwind';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://10.0.1.5:5000/api';
-
 export default function PostList() {
   const [posts, setPosts] = useState([]);
 
