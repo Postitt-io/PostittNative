@@ -1,11 +1,14 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { Header } from 'react-native-elements';
+import { getColor } from '../lib/tailwind';
 
 export default function PostittHeader() {
+  const iconColour = getColor('white');
   return (
     <Header
-      leftComponent={{ icon: 'menu', color: '#fff' }}
+      backgroundColor={getColor('blue-700')}
+      leftComponent={{ icon: 'menu', color: iconColour }}
       centerComponent={
         <Image
           source={require('../default.png')}
@@ -13,7 +16,7 @@ export default function PostittHeader() {
           style={{ height: 30, width: 150, resizeMode: 'contain' }}
         />
       }
-      rightComponent={{ icon: 'home', color: '#fff' }}
+      rightComponent={{ icon: 'home', color: iconColour }}
     />
   );
 }
