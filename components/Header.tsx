@@ -1,9 +1,7 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { tailwind } from '../lib/tailwind';
+import React from 'react'
 
 export default function Header() {
+<<<<<<< HEAD
   return (
     <View style={tailwind('items-center flex')}>
       <Image
@@ -17,4 +15,9 @@ export default function Header() {
       </View>
     </View>
   );
+=======
+    return (
+        
+    );
+>>>>>>> parent of e8d3aea... Add header and custom fonts
 }
