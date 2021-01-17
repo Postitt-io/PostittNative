@@ -1,13 +1,13 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 
-import Header from './components/Header';
+import PostittHeader from './components/PostittHeader';
 import PostList from './components/PostList';
 
 export default function App() {
   return (
     <SafeAreaView>
-      <Header />
+      <PostittHeader />
       <PostList />
     </SafeAreaView>
   );
