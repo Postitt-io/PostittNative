@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getPosts() {
@@ -13,6 +14,7 @@ export default function PostList() {
         .get('/posts')
         .then((res) => {
           setPosts(res.data);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -32,15 +34,24 @@ export default function PostList() {
       </TouchableOpacity>
     );
   }
-  return (
-    <View style={tailwind('items-center')}>
-      <FlatList
-        data={posts}
-        keyExtractor={(item) => item.identifier}
-        renderItem={({ item }) => (
-          <Item title={item.title} body={item.body} subName={item.subName} />
-        )}
-      />
-    </View>
-  );
+
+  if (loading) {
+    return (
+      <View style={tailwind('items-center')}>
+        <Text>Loading... </Text>
+      </View>
+    );
+  } else {
+    return (
+      <View style={tailwind('items-center')}>
+        <FlatList
+          data={posts}
+          keyExtractor={(item) => item.identifier}
+          renderItem={({ item }) => (
+            <Item title={item.title} body={item.body} subName={item.subName} />
+          )}
+        />
+      </View>
+    );
+  }
 }
