@@ -1,15 +1,25 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text, View, FlatList } from 'react-native';
 import tailwind from 'tailwind-rn';
 import Axios from 'axios';
-
-// import { Post } from './types';
 
 Axios.defaults.baseURL = 'http://localhost:5000/api';
 Axios.defaults.withCredentials = true;
 
-export default async function App() {
-  // const { data: posts } = await Axios.get('/posts');
+const PostItem = ({ title }) => (
+  <View style={tailwind('bg-blue-500 px-5 py-3 rounded-full')}>
+    <Text style={tailwind('text-white font-semibold text-lg')}>
+      {title}
+    </Text>
+  </View>
+);
+
+const { data: DATA } = async () => {
+  Axios.get('/posts');
+};
+
+export default function App() {
+  const renderItem = ({ item }) => <PostItem title={item.title} />;
 
   return (
     <SafeAreaView
@@ -20,6 +30,11 @@ export default async function App() {
           Hello Tailwind 👋
         </Text>
       </View>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(post) => post.id}
+      />
     </SafeAreaView>
   );
 }
