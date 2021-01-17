@@ -81,26 +81,25 @@ export default function PostList() {
             color={getColor('postitt-gray')}
             size={18}
           />
-          <View style={tailwind('justify-end')}>
-            <View style={tailwind('flex-row items-center bg-white rounded-full my-1 px-1')}>
-              <Icon
-                raised
-                reverse
-                name="plus"
-                type="font-awesome"
-                color={getColor('postitt-gray')}
-                size={12}
-              />
-              <Text style={tailwind('text-xs')}>{voteScore}</Text>
-              <Icon
-                raised
-                reverse
-                name="minus"
-                type="font-awesome"
-                color={getColor('postitt-gray')}
-                size={12}
-              />
-            </View>
+
+          <View style={tailwind('flex-row items-center bg-white rounded-full my-1 px-1')}>
+            <Icon
+              raised
+              reverse
+              name="plus"
+              type="font-awesome"
+              color={getColor('postitt-gray')}
+              size={12}
+            />
+            <Text style={tailwind('text-xs')}>{voteScore}</Text>
+            <Icon
+              raised
+              reverse
+              name="minus"
+              type="font-awesome"
+              color={getColor('postitt-gray')}
+              size={12}
+            />
           </View>
         </View>
       </TouchableOpacity>
