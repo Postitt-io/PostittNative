@@ -1,7 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 
-import { Icon } from 'react-native-elements';
+import { Icon, Divider } from 'react-native-elements';
 import { tailwind, getColor } from '../lib/tailwind';
 import axios from 'axios';
 
@@ -24,7 +25,11 @@ export default function PostList() {
     getPosts();
   }, []);
 
-  function Item({ title, body, subName, commentCount, voteScore }) {
+  function Item({ title, body, subName, commentCount, voteScore, username }) {
+    const titleStyle = body
+      ? tailwind('px-1 text-gray-800 font-light text-left bg-white')
+      : tailwind('px-1 text-gray-800 font-light text-left bg-white rounded-b');
+
     return (
       <TouchableOpacity
         style={tailwind('bg-gray-400 p-1 m-1 rounded-lg items-center items-stretch flex')}
@@ -32,17 +37,8 @@ export default function PostList() {
         <Text style={tailwind('text-gray-800 px-1 text-xs font-thin text-left bg-white rounded-t')}>
           p/{subName}
         </Text>
-        {body ? (
-          <Text style={tailwind('px-1 text-gray-800 font-light text-left bg-white')}>{title}</Text>
-        ) : (
-          <Text
-            style={tailwind(
-              'px-1 text-gray-800 font-semibold text-left font-light bg-white rounded-b',
-            )}
-          >
-            {title}
-          </Text>
-        )}
+        <Divider style={{ height: 1, color: getColor('gray-200') }} />
+        <Text style={titleStyle}>{title}</Text>
 
         {body ? (
           <Text
@@ -53,6 +49,7 @@ export default function PostList() {
             {body}
           </Text>
         ) : null}
+        {/* Start of Icons */}
         <View style={tailwind('flex-row justify-between')}>
           <View style={tailwind('flex-row items-center bg-white rounded-full my-1 px-1')}>
             <Icon
@@ -125,6 +122,7 @@ export default function PostList() {
               subName={item.subName}
               commentCount={item.commentCount}
               voteScore={item.voteScore}
+              username={item.username}
             />
           )}
         />
