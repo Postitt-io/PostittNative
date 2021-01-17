@@ -34,12 +34,13 @@ export default function PostList() {
       <TouchableOpacity
         style={tailwind('bg-gray-400 p-1 m-1 rounded-lg items-center items-stretch flex')}
       >
-        <Text style={tailwind('text-gray-800 px-1 text-xs font-thin text-left bg-white rounded-t')}>
-          p/{subName}
-        </Text>
+        <View style={tailwind('flex-row bg-white rounded-t justify-between')}>
+          <Text style={tailwind('text-gray-800 px-1 text-xs font-thin')}>p/{subName}</Text>
+          <Text style={tailwind('text-gray-800 px-1 text-xs font-thin underline')}>{username}</Text>
+        </View>
         <Divider style={{ height: 1, color: getColor('gray-200') }} />
         <Text style={titleStyle}>{title}</Text>
-
+        {/* Post body */}
         {body ? (
           <Text
             style={tailwind(
