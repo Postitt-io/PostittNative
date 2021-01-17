@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { tailwind } from '../lib/tailwind';
 
 export default function Header() {
   return (
-    <View style={tailwind('items-center')}>
+    <View style={tailwind('items-center bg-green-200')}>
       <Image
         source={require('../default.png')}
         // eslint-disable-next-line react-native/no-inline-styles

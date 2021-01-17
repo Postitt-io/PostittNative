@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ActivityIndicator,
-  FlatList,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
-import tailwind from 'tailwind-rn';
-import axios from 'axios';
+import { StyleSheet, View, ActivityIndicator, SafeAreaView } from 'react-native';
 
 import Header from './components/Header';
+import PostList from './components/PostList';
+import axios from 'axios';
+import tailwind from 'tailwind-rn';
 
 axios.defaults.baseURL = 'http://10.0.1.5:5000/api';
 
@@ -39,50 +32,19 @@ export default class App extends React.Component {
   }
 
   render() {
-    const posts = this.state.posts;
-
-    function Item({ title, body, subName }) {
-      return (
-        <TouchableOpacity style={tailwind('bg-blue-400 p-3 rounded-lg items-center m-1')}>
-          <Text style={tailwind('text-red-900 font-semibold text-base text-center')}>
-            p/{subName}
-          </Text>
-          <Text style={tailwind('text-white font-semibold text-base text-center')}>{title}</Text>
-          <Text style={tailwind('text-gray-900 font-semibold text-sm text-left')}>{body}</Text>
-        </TouchableOpacity>
-      );
-    }
-
     if (this.state.isLoading) {
       return (
-        <View style={styles.container}>
+        <View style={tailwind('pt-5 px-5 flex bg-white')}>
           <ActivityIndicator />
         </View>
       );
     } else {
       return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView>
           <Header />
-          <View>
-            <FlatList
-              data={posts}
-              keyExtractor={(item) => item.identifier}
-              renderItem={({ item }) => (
-                <Item title={item.title} body={item.body} subName={item.subName} />
-              )}
-            />
-          </View>
+          <PostList data={this.state.posts} />
         </SafeAreaView>
       );
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 30,
-    paddingHorizontal: 5,
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
