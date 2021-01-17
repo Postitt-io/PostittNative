@@ -4,10 +4,10 @@ import { Header } from 'react-native-elements';
 import { getColor } from '../lib/tailwind';
 
 export default function PostittHeader() {
-  const iconColour = getColor('white');
+  const iconColour = getColor('postitt-gray');
   return (
     <Header
-      backgroundColor={getColor('blue-700')}
+      backgroundColor={getColor('gray-100')}
       leftComponent={{ icon: 'menu', color: iconColour }}
       centerComponent={
         <Image
