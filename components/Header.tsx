@@ -1,23 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Image, Text, View } from 'react-native';
+import { tailwind } from '../lib/tailwind';
 
 export default function Header() {
-<<<<<<< HEAD
   return (
-    <View style={tailwind('items-center flex')}>
+    <View style={tailwind('items-center')}>
       <Image
         source={require('../default.png')}
-        style={{ height: 600, width: 200, resizeMode: 'contain' }}
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{ height: 50, width: 200, resizeMode: 'contain' }}
       />
-      <View style={tailwind('bg-blue-800 px-2 py-2 rounded-full')}>
-        <Text style={tailwind('text-blue-100')}>
-          Hello Tailwind 👋, what's going on?
-        </Text>
-      </View>
     </View>
   );
-=======
-    return (
-        
-    );
->>>>>>> parent of e8d3aea... Add header and custom fonts
 }
