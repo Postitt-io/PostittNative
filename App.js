@@ -5,7 +5,7 @@ import axios from 'axios';
 import PostittHeader from './components/PostittHeader';
 import PostList from './components/PostList';
 
-axios.defaults.baseURL = 'http://10.0.1.5:5000/api';
+axios.defaults.baseURL = process.env.IP_ADDRESS;
 
 export default function App() {
   return (
