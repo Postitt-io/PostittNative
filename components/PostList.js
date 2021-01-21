@@ -1,10 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import dayjs from 'dayjs';
 
 import { Icon, Divider } from 'react-native-elements';
 import { tailwind, getColor } from '../lib/tailwind';
 import axios from 'axios';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
@@ -25,18 +29,29 @@ export default function PostList() {
     getPosts();
   }, []);
 
-  function Item({ title, body, subName, commentCount, voteScore, username }) {
+  function Item({ post }) {
+    const { title, body, subName, commentCount, voteScore, username, createdAt } = post;
+
     const titleStyle = body
       ? tailwind('px-1 text-gray-800 font-light text-left bg-white')
       : tailwind('px-1 text-gray-800 font-light text-left bg-white rounded-b');
 
     return (
       <TouchableOpacity
-        style={tailwind('bg-gray-400 p-1 m-1 rounded-lg items-center items-stretch flex')}
+        style={tailwind('bg-gray-400 p-1 m-1 rounded-lg items-center items-stretch')}
       >
         <View style={tailwind('flex-row bg-white rounded-t justify-between')}>
-          <Text style={tailwind('text-gray-800 px-1 text-xs font-thin')}>p/{subName}</Text>
-          <Text style={tailwind('text-gray-800 px-1 text-xs font-thin underline')}>{username}</Text>
+          <View style={tailwind('flex-row justify-start')}>
+            <Text style={tailwind('text-gray-800 px-1 text-xs font-thin')}>p/{subName}</Text>
+          </View>
+          <View style={tailwind('flex-row text-right')}>
+            <Text style={tailwind('text-gray-800 px-1 text-xs font-thin underline')}>
+              {username}
+            </Text>
+            <Text style={tailwind('text-gray-800 px-1 text-xs font-thin')}>
+              {dayjs(createdAt).fromNow()}
+            </Text>
+          </View>
         </View>
         <Divider style={{ height: 1, color: getColor('gray-200') }} />
         <Text style={titleStyle}>{title}</Text>
@@ -106,7 +121,7 @@ export default function PostList() {
 
   if (loading) {
     return (
-      <View style={tailwind('items-center')}>
+      <View style={tailwind('items-center pt-10')}>
         <Text>Loading... </Text>
       </View>
     );
@@ -116,16 +131,7 @@ export default function PostList() {
         <FlatList
           data={posts}
           keyExtractor={(item) => item.identifier}
-          renderItem={({ item }) => (
-            <Item
-              title={item.title}
-              body={item.body}
-              subName={item.subName}
-              commentCount={item.commentCount}
-              voteScore={item.voteScore}
-              username={item.username}
-            />
-          )}
+          renderItem={({ item }) => <Item post={item} />}
         />
       </View>
     );
