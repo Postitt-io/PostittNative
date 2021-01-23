@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import dayjs from 'dayjs';
 
 import { Icon, Divider } from 'react-native-elements';
@@ -121,8 +121,9 @@ export default function PostList() {
 
   if (loading) {
     return (
-      <View style={tailwind('items-center pt-10')}>
-        <Text>Loading... </Text>
+      <View style={tailwind('items-center pt-10 flex-row justify-center')}>
+        <ActivityIndicator size="large" color="#0000ff" style={tailwind('mx-3')} />
+        <Text style={tailwind('text-gray-800 font-light text-lg')}>Loading... </Text>
       </View>
     );
   } else {
